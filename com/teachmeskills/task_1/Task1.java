@@ -42,20 +42,28 @@ public class Task1 {
     }
 
     private static List<Integer> distinct(List<Integer> list) {
-        return list.stream().distinct().collect(Collectors.toList());
+        return list.stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     private static List<Integer> filter(List<Integer> list) {
-        return list.stream().filter(el -> el % 2 == 0 && el > 7 && el <= 17).collect(Collectors.toList());
+        return list.stream()
+                .filter(el -> el % 2 == 0 && el > 7 && el <= 17)
+                .collect(Collectors.toList());
     }
 
-
     private static List<Integer> multiply(List<Integer> list, int multiplier) {
-        return list.stream().map(el -> el * multiplier).collect(Collectors.toList());
+        return list.stream()
+                .map(el -> el * multiplier)
+                .collect(Collectors.toList());
     }
 
     private static List<Integer> sort(List<Integer> list) {
-        return list.stream().sorted().limit(4).collect(Collectors.toList());
+        return list.stream()
+                .sorted()
+                .limit(4)
+                .collect(Collectors.toList());
     }
 
     private static int count(List<Integer> list) {
