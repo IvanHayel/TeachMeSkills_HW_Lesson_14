@@ -20,10 +20,12 @@ import java.util.stream.Collectors;
 public class Task1 {
     public static void main(String[] args) {
         int quantity = 15;
+        int multiplier = 2;
         List<Integer> list = getRandomList(quantity);
         System.out.println("Random list: " + list);
         System.out.println("Distinct values: " + distinct(list));
         System.out.println("Filter: " + filter(list));
+        System.out.println("Multiply x2 each element: " + multiply(list, multiplier));
         System.out.println("Sort: " + sort(list));
         System.out.println("Count: " + count(list));
         System.out.println("Average: " + average(list));
@@ -47,6 +49,13 @@ public class Task1 {
     private static List<Integer> filter(List<Integer> list) {
         return list.stream()
                 .filter(el -> el % 2 == 0 && el > 7 && el <= 17)
+                .collect(Collectors.toList());
+    }
+
+
+    private static List<Integer> multiply(List<Integer> list, int multiplier) {
+        return list.stream()
+                .map(el -> el * multiplier)
                 .collect(Collectors.toList());
     }
 
