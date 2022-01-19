@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class Task1 {
     public static void main(String[] args) {
-        int quantity = 15;
+        int quantity = 3;
         int multiplier = 2;
         List<Integer> list = getRandomList(quantity);
         System.out.println("Random list: " + list);
@@ -29,6 +29,7 @@ public class Task1 {
         System.out.println("Sort: " + sort(list));
         System.out.println("Count: " + count(list));
         System.out.println("Average: " + average(list));
+        System.out.println("Another average: " + avg(list));
     }
 
     private static List<Integer> getRandomList(int quantity) {
@@ -41,29 +42,20 @@ public class Task1 {
     }
 
     private static List<Integer> distinct(List<Integer> list) {
-        return list.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        return list.stream().distinct().collect(Collectors.toList());
     }
 
     private static List<Integer> filter(List<Integer> list) {
-        return list.stream()
-                .filter(el -> el % 2 == 0 && el > 7 && el <= 17)
-                .collect(Collectors.toList());
+        return list.stream().filter(el -> el % 2 == 0 && el > 7 && el <= 17).collect(Collectors.toList());
     }
 
 
     private static List<Integer> multiply(List<Integer> list, int multiplier) {
-        return list.stream()
-                .map(el -> el * multiplier)
-                .collect(Collectors.toList());
+        return list.stream().map(el -> el * multiplier).collect(Collectors.toList());
     }
 
     private static List<Integer> sort(List<Integer> list) {
-        return list.stream()
-                .sorted()
-                .limit(4)
-                .collect(Collectors.toList());
+        return list.stream().sorted().limit(4).collect(Collectors.toList());
     }
 
     private static int count(List<Integer> list) {
@@ -76,5 +68,12 @@ public class Task1 {
             return sum.get() / (double) list.size();
         }
         return 0;
+    }
+
+    private static double avg(List<Integer> list) {
+        return list.stream()
+                .mapToDouble(Double::valueOf)
+                .average()
+                .orElseGet(() -> 0);
     }
 }
