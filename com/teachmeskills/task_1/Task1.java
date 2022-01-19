@@ -1,9 +1,8 @@
 package com.teachmeskills.task_1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -33,12 +32,17 @@ public class Task1 {
     }
 
     private static List<Integer> getRandomList(int quantity) {
-        Random generator = new Random();
-        List<Integer> randomList = new ArrayList<>();
-        for (int counter = 0; counter < quantity; counter++) {
-            randomList.add(generator.nextInt(20));
+        try {
+            Random generator = SecureRandom.getInstanceStrong();
+            List<Integer> randomList = new ArrayList<>();
+            for (int counter = 0; counter < quantity; counter++) {
+                randomList.add(generator.nextInt(20));
+            }
+            return randomList;
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e.getMessage());
+            return Collections.emptyList();
         }
-        return randomList;
     }
 
     private static List<Integer> distinct(List<Integer> list) {
